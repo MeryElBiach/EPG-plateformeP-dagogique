@@ -1,0 +1,24 @@
+.categories-content img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+.main-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.logo-container {
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 60px; 
+  width: 90px;
+  object-fit: contain;
+}
+

@@ -1,0 +1,98 @@
+body {
+    background: url('/assets/images/backlogin.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.form-box {
+    background: linear-gradient(to bottom right, rgb(41, 4, 249), rgb(7, 93, 253));
+    border-radius: 15px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 40px 12px 40px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: white;
+    color: black;
+}
+
+.input-group i {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    color: #888;
+}
+
+.custom-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(to right, rgb(17, 4, 134), skyblue);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.custom-button:hover {
+    background: linear-gradient(to right, rgb(17, 4, 134), #00bfff);
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Cacher le nom du fichier sélectionné */
+input[type="file"] {
+    color: transparent;
+}
+
+/* Nouveau style pour les menus déroulants (select) */
+select {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
