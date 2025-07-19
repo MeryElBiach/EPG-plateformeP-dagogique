@@ -8,14 +8,14 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Table utilisateurs
+        // Table des utilisateurs
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->string('email')->unique();
-            $table->string('mot_de_passe');
+            $table->string('password'); 
             $table->enum('role', ['etudiant', 'enseignant', 'admin']);
-            $table->string('avatar')->nullable(); // chemin de la photo de profil
+            $table->string('avatar')->nullable(); // Photo de profil
             $table->rememberToken();
             $table->timestamps();
         });
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable();
         });
 
-        // Table des sessions
+        // Table des sessions (pour "remember me", etc.)
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -42,6 +42,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('utilisateurs');
+        Schema::dropIfExists('users');
     }
 };

@@ -1,19 +1,20 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\Utilisateur; 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
-   public function run(): void
+    public function run(): void
     {
-        Utilisateur::create([
+        User::create([
             'nom' => 'Admin',
-            'email' => 'Lazrak@epg.com',
-            'mot_de_passe' => bcrypt('admin123'),
-            'role' => 'admin'
+            'email' => 'admin@epg.com',
+            'password' => Hash::make('admin123'), // ✅ utilise 'password' et non 'mot_de_passe'
+            'role' => 'admin',
         ]);
     }
 }

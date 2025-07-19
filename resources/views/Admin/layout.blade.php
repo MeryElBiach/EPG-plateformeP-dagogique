@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Dashboard | Upcube - Admin & Dashboard Template</title>
+        <title>@yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -16,7 +16,11 @@
     <link href="{{ asset('Admin/assets/admin/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('Admin/assets/admin/css/icons.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('Admin/assets/admin/css/app.min.css') }}" rel="stylesheet" />
-
+     <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+    < <!-- Favicon & CSS librairies existantes -->
+    <link href="{{ asset('Admin/assets/admin/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('Admin/assets/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('Admin/assets/admin/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     </head>
 
     <body data-topbar="dark">
@@ -27,20 +31,20 @@
         <div id="layout-wrapper">
 
             
-            @include("Admin.header")
+            @include("Admin.partials.header")
 
             <!-- ========== Left Sidebar Start ========== -->
-            @include('Admin.Leftsidebar')
+            @include('Admin.partials.Leftsidebar')
             <!-- Left Sidebar End -->
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
             <div class="main-content">
-                @yield('dash')
+                @yield('content')
                 <!-- End Page-content -->
                
-                @include('Admin.footer')
+                @include('Admin.partials.footer')
                 
             </div>
             <!-- end main content-->
@@ -49,7 +53,7 @@
         <!-- END layout-wrapper -->
 
         <!-- Right Sidebar -->
-         @include('Admin.Rightsidebar')
+         @include('Admin.partials.Rightsidebar')
         <!-- /Right-bar -->
 
         <!-- Right bar overlay-->

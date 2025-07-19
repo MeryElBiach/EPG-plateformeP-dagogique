@@ -46,14 +46,3 @@ class AuthenticatedSessionController extends Controller
     }
 }
 
-//  rediriger selon le rôle, tu peux faire ça à la place :
-
-// $user = Auth::user();
-
-// if ($user->role === 'admin') {
-//     return redirect()->route('admin.dashboard');
-// } elseif ($user->role === 'prof') {
-//     return redirect()->route('prof.dashboard');
-// } else {
-//     return redirect()->route('etudiant.dashboard');
-// }

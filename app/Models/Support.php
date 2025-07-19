@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Support extends Model
 {
@@ -14,36 +17,24 @@ class Support extends Model
         'fichier',
         'date_soumission',
         'module_id',
-        'enseignant_id'
+        'enseignant_id',
     ];
 
-    /**
-     * Ce support appartient à un module
-     */
     public function module(): BelongsTo
     {
         return $this->belongsTo(Module::class);
     }
 
-    /**
-     * Ce support a été déposé par un enseignant
-     */
     public function enseignant(): BelongsTo
     {
         return $this->belongsTo(User::class, 'enseignant_id');
     }
 
-    /**
-     * Évaluations du support
-     */
     public function evaluations(): HasMany
     {
         return $this->hasMany(Evaluation::class);
     }
 
-    /**
-     * Commentaires liés à ce support
-     */
     public function commentaires(): HasMany
     {
         return $this->hasMany(Commentaire::class);

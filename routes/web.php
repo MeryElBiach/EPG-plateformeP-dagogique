@@ -29,6 +29,29 @@ Route::get('/enseignant/dashboard', [EnseignantController::class, 'index'])
     ->middleware(['auth'])
     ->name('enseignant.dashboard');
 
+// Routes de Admin
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/formations', [AdminController::class, 'formations'])->name('admin.formations.index');
+
+    Route::get('/formations/create', [AdminController::class, 'createFormation'])->name('admin.formations.create');
+    Route::post('/formations', [AdminController::class, 'storeFormation'])->name('admin.formations.store');
+
+    Route::get('/formations/{formation}/edit', [AdminController::class, 'editFormation'])->name('admin.formations.edit');
+    Route::put('/formations/{formation}', [AdminController::class, 'updateFormation'])->name('admin.formations.update');
+
+    Route::delete('/formations/{formation}', [AdminController::class, 'destroyFormation'])->name('admin.formations.destroy');
+    Route::get('/modules', [AdminController::class, 'modules'])->name('admin.modules.index');
+
+    Route::get('/modules/create', [AdminController::class, 'createModule'])->name('admin.modules.create');
+    Route::post('/modules', [AdminController::class, 'storeModule'])->name('admin.modules.store');
+
+    Route::get('/modules/{module}/edit', [AdminController::class, 'editModule'])->name('admin.modules.edit');
+    Route::put('/modules/{module}', [AdminController::class, 'updateModule'])->name('admin.modules.update');
+
+    Route::delete('/modules/{module}', [AdminController::class, 'destroyModule'])->name('admin.modules.destroy');
+});
+
+
 // Routes Breeze pour le profil
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

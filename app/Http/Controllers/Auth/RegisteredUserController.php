@@ -15,24 +15,31 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    /**
+     * Affiche le formulaire d'inscription
+     */
     public function create(): View
     {
         $formations = Formation::all();
         return view('auth.register', compact('formations'));
     }
 
+    /**
+     * Traite l'inscription
+     */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'nom' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:utilisateurs'],
+            'prenom' => ['nullable', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
             'role' => ['required', 'in:admin,enseignant,etudiant'],
             'formation_id' => ['nullable', 'exists:formations,id'],
-            'specialite' => ['nullable', 'string', 'max:255'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Upload de l'avatar si présent
         $avatarPath = null;
         if ($request->hasFile('avatar')) {
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
@@ -40,12 +47,12 @@ class RegisteredUserController extends Controller
 
         $user = User::create([
             'nom' => $request->nom,
+            'prenom' => $request->prenom,
             'email' => $request->email,
             'role' => $request->role,
-            'specialite' => $request->specialite,
             'avatar' => $avatarPath,
             'formation_id' => $request->formation_id,
-            'mot_de_passe' => Hash::make($request->password), // ✅ champ personnalisé
+            'password' => Hash::make($request->password), // ✅ Laravel attend 'password'
         ]);
 
         event(new Registered($user));
