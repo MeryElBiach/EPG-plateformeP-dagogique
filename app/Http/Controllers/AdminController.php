@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Routing\Attributes\Middleware;
 use App\Models\Formation;
 use App\Models\Module;
+use App\Models\User; 
 
 #[Middleware('auth')] 
 class AdminController extends Controller
@@ -70,46 +71,70 @@ class AdminController extends Controller
 // modules
 public function modules()
 {
-    $modules = Module::with('formation')->latest()->get();
-    return view('Admin.modules.index', compact('modules'));
+    /* On charge CHAQUE formation avec ses modules et l’enseignant lié */
+    $formations = Formation::with(['modules.enseignant'])
+                           ->orderBy('nom')
+                           ->get();
+
+    /* On envoie $formations à la vue (plus $modules) */
+    return view('Admin.modules.index', compact('formations'));
 }
 
 public function createModule()
 {
-    $formations = Formation::all();
-    return view('Admin.modules.create', compact('formations'));
+    $formations  = Formation::all();
+        // 2) on fournit la liste des utilisateurs dont rôle = enseignant
+        $enseignants = User::where('role', 'enseignant')->get();
+
+        return view('Admin.modules.create', compact('formations', 'enseignants'));
 }
 
-public function storeModule(Request $request)
-{
-    $request->validate([
-        'nom' => 'required|string|max:255',
-        'elements' => 'nullable|string',
-        'formation_id' => 'required|exists:formations,id',
-    ]);
+ public function storeModule(Request $request)
+    {
+        // 3) on valide aussi la clé enseignante (nullable → module « à pourvoir » possible)
+        $validated = $request->validate([
+            'nom'           => ['required', 'string', 'max:255'],
+            'elements'      => ['nullable', 'string'],
+            'formation_id'  => ['required', 'exists:formations,id'],
+            'enseignant_id' => ['nullable', 'exists:users,id'],
+        ]);
 
-    Module::create($request->only(['nom', 'elements', 'formation_id']));
+  Module::create($validated);
 
-    return redirect()->route('admin.modules.index')->with('success', 'Module ajouté avec succès.');
+        return redirect()
+            ->route('admin.modules.index')
+            ->with('success', 'Module créé avec succès.');
 }
 
-public function editModule(Module $module)
-{
-    $formations = Formation::all();
-    return view('Admin.modules.edit', compact('module', 'formations'));
-}
+  public function editModule(Module $module)
+    {
+        $formations  = Formation::all();
+        $enseignants = User::where('role', 'enseignant')->get();
 
-public function updateModule(Request $request, Module $module)
-{
-    $request->validate([
-        'nom' => 'required|string|max:255',
-        'elements' => 'nullable|string',
-        'formation_id' => 'required|exists:formations,id',
-    ]);
+        return view('Admin.modules.edit', compact('module', 'formations', 'enseignants'));
+    }
 
-    $module->update($request->only(['nom', 'elements', 'formation_id']));
+  public function updateModule(Request $request, Module $module)
+    {
+        $validated = $request->validate([
+            'nom'           => ['required', 'string', 'max:255'],
+            'elements'      => ['nullable', 'string'],
+            'formation_id'  => ['required', 'exists:formations,id'],
+            'enseignant_id' => ['nullable', 'exists:users,id'],
+        ]);
 
-    return redirect()->route('admin.modules.index')->with('success', 'Module modifié avec succès.');
-}
+     $module->update($validated);
 
+        return redirect()
+            ->route('admin.modules.index')
+            ->with('success', 'Module mis à jour.');
+    }
+public function destroyModule(Module $module)
+    {
+        $module->delete();
+
+        return redirect()
+            ->route('admin.modules.index')
+            ->with('success', 'Le module « '.$module->nom.' » a été supprimé.');
+    }
 }

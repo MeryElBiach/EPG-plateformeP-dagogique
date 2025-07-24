@@ -50,14 +50,48 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::delete('/modules/{module}', [AdminController::class, 'destroyModule'])->name('admin.modules.destroy');
 });
+// Routes de Enseignant
 
+Route::middleware(['auth'])->prefix('enseignant')->name('enseignant.')->group(function () {
+        Route::get('/',            [EnseignantController::class, 'index'])->name('dashboard');
+        Route::get('/mes-modules', [EnseignantController::class, 'modulesIndex'])->name('modules.index');
+        // 1) Liste de tous mes supports
+        Route::get('supports',  [EnseignantController::class, 'supportsIndex'])->name('supports.index');
 
-// Routes Breeze pour le profil
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+    // 2) Formulaire de dépôt d’un support
+    Route::get('supports/create', 
+        [EnseignantController::class, 'supportsCreate']
+    )->name('supports.create');
+
+    // (optionnel : gestion du POST)
+    Route::post('supports', 
+        [EnseignantController::class, 'supportsStore']
+    )->name('supports.store');
+    // 3) Afficher un support (incrémente “views”)
+Route::get('supports/{support}', 
+    [EnseignantController::class, 'showSupport']
+)->name('supports.show');
+
+// 4) Télécharger un support (incrémente “downloads”)
+Route::get('supports/{support}/download', 
+    [EnseignantController::class, 'downloadSupport']
+)->name('supports.download');
+// Formulaire d’édition d’un support
+Route::get('supports/{support}/edit', 
+    [EnseignantController::class, 'editSupport']
+)->name('supports.edit');
+
+// Traitement de la mise à jour
+Route::put('supports/{support}', 
+    [EnseignantController::class, 'updateSupport']
+)->name('supports.update');
+
+// Suppression d’un support
+Route::delete('supports/{support}', 
+    [EnseignantController::class, 'destroySupport']
+)->name('supports.destroy');
+
+    });
 
 
 

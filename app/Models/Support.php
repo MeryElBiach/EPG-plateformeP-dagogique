@@ -11,14 +11,11 @@ class Support extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'titre',
-        'type',
-        'fichier',
-        'date_soumission',
-        'module_id',
-        'enseignant_id',
-    ];
+protected $fillable = [
+    'titre','type','fichier',
+    'module_id','enseignant_id',
+    'views','downloads',
+];
 
     public function module(): BelongsTo
     {

@@ -34,6 +34,6 @@ des <span style="color:rgb(237, 142, 8)">Génies – Fès</span>
   </div>
 
   <div class="home-img">
-    <img src="http://127.0.0.1:8000/home/assets/images/hero3.png" alt="Plateforme pédagogique">
+    <img src="{{ asset('/home/assets/images/hero3.png') }}" alt="Plateforme pédagogique">
   </div>
 </section>

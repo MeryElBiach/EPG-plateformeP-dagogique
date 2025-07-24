@@ -45,5 +45,5 @@ class User extends Authenticatable
     public function commentaires(): HasMany
     {
         return $this->hasMany(Commentaire::class, 'etudiant_id');
-    }
+    }public function modules(){ return $this->hasMany(Module::class,'enseignant_id'); }
 }

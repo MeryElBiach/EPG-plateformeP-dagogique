@@ -1,180 +1,90 @@
-<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-    <div class="me-3">
-      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
-        <span class="icon-menu"></span>
-      </button>
-    </div>
-    <div>
-      <a class="navbar-brand brand-logo" href="index.html">
-        <img src="{{ asset('user/assets/images/logo.svg') }}" alt="logo" />
-      </a>
-      <a class="navbar-brand brand-logo-mini" href="index.html">
-        <img src="{{ asset('user/assets/images/logo-mini.svg') }}" alt="logo" />
-      </a>
-    </div>
-  </div>
-  <div class="navbar-menu-wrapper d-flex align-items-top">
-    <ul class="navbar-nav">
-      <li class="nav-item fw-semibold d-none d-lg-block ms-0">
-        <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
-        <h3 class="welcome-sub-text">Your performance summary this week </h3>
-      </li>
-    </ul>
-    <ul class="navbar-nav ms-auto">
-      <li class="nav-item dropdown d-none d-lg-block">
-        <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-          Select Category
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
-          <a class="dropdown-item py-3">
-            <p class="mb-0 fw-medium float-start">Select category</p>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis fw-medium text-dark">Bootstrap Bundle</p>
-              <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards</p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis fw-medium text-dark">Angular Bundle</p>
-              <p class="fw-light small-text mb-0">Everything you’ll ever need for your Angular projects</p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis fw-medium text-dark">VUE Bundle</p>
-              <p class="fw-light small-text mb-0">Bundle of 6 Premium Vue Admin Dashboard</p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis fw-medium text-dark">React Bundle</p>
-              <p class="fw-light small-text mb-0">Bundle of 8 Premium React Admin Dashboard</p>
-            </div>
-          </a>
-        </div>
-      </li>
-      <li class="nav-item d-none d-lg-block">
-        <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
-          <span class="input-group-addon input-group-prepend border-right">
-            <span class="icon-calendar input-group-text calendar-icon"></span>
-          </span>
-          <input type="text" class="form-control">
-        </div>
-      </li>
-      <li class="nav-item">
-        <form class="search-form" action="#">
-          <i class="icon-search"></i>
-          <input type="search" class="form-control" placeholder="Search Here" title="Search here">
-        </form>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-          <i class="icon-bell"></i>
-          <span class="count"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
-          <a class="dropdown-item py-3 border-bottom">
-            <p class="mb-0 fw-medium float-start">You have 4 new notifications </p>
-            <span class="badge badge-pill badge-primary float-end">View all</span>
-          </a>
-          <a class="dropdown-item preview-item py-3">
-            <div class="preview-thumbnail">
-              <i class="mdi mdi-alert m-auto text-primary"></i>
-            </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject fw-normal text-dark mb-1">Application Error</h6>
-              <p class="fw-light small-text mb-0"> Just now </p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item py-3">
-            <div class="preview-thumbnail">
-              <i class="mdi mdi-lock-outline m-auto text-primary"></i>
-            </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject fw-normal text-dark mb-1">Settings</h6>
-              <p class="fw-light small-text mb-0"> Private message </p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item py-3">
-            <div class="preview-thumbnail">
-              <i class="mdi mdi-airballoon m-auto text-primary"></i>
-            </div>
-            <div class="preview-item-content">
-              <h6 class="preview-subject fw-normal text-dark mb-1">New user registration</h6>
-              <p class="fw-light small-text mb-0"> 2 days ago </p>
-            </div>
-          </a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="icon-mail icon-lg"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="countDropdown">
-          <a class="dropdown-item py-3">
-            <p class="mb-0 fw-medium float-start">You have 7 unread mails </p>
-            <span class="badge badge-pill badge-primary float-end">View all</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <img src="{{ asset('user/assets/images/faces/face10.jpg') }}" alt="image" class="img-sm profile-pic">
-            </div>
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis fw-medium text-dark">Marian Garner</p>
-              <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <img src="{{ asset('user/assets/images/faces/face12.jpg') }}" alt="image" class="img-sm profile-pic">
-            </div>
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis fw-medium text-dark">David Grey</p>
-              <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-            </div>
-          </a>
-          <a class="dropdown-item preview-item">
-            <div class="preview-thumbnail">
-              <img src="{{ asset('user/assets/images/faces/face1.jpg') }}" alt="image" class="img-sm profile-pic">
-            </div>
-            <div class="preview-item-content flex-grow py-2">
-              <p class="preview-subject ellipsis fw-medium text-dark">Travis Jenkins</p>
-              <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
-            </div>
-          </a>
-        </div>
-      </li>
-      <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-        <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-          <img class="img-xs rounded-circle" src="{{ asset('user/assets/images/faces/face8.jpg') }}" alt="Profile image">
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-          <div class="dropdown-header text-center">
-            <img class="img-md rounded-circle" src="{{ asset('user/assets/images/faces/face8.jpg') }}" alt="Profile image">
-            <p class="mb-1 mt-3 fw-semibold">Allen Moreno</p>
-            <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
-          </div>
-          <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-          <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-          <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-          <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
-               <button type="submit" class="dropdown-item bg-transparent border-0 w-100 text-start">
-                  <i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out
-               </button>
-          </form>
+{{-- resources/views/teacher/partials/navbar.blade.php --}}
+<header class="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+<nav x-data="{ mobile:false, user:false, ddSupports:false, ddNotif:false }" class="fixed inset-x-0 top-0 z-30">
+    <div class="bg-gradient-to-r from-blue-950 via-blue-700 to-orange-500 shadow-lg">
+        {{-- *** FLEX GLOBAL : logo | liens | profil *** --}}
+        <div class="max-w-7xl mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
 
-        </div>
-      </li>
-    </ul>
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
-      <span class="mdi mdi-menu"></span>
-    </button>
-  </div>
+            {{-- Logo + burger mobile --}}
+            <div class="flex items-center gap-2">
+                <button @click="mobile=!mobile" class="md:hidden p-2 rounded hover:bg-blue-800/30 focus:outline-none">
+                    <i :class="mobile ? 'ri-close-line' : 'ri-menu-line'" class="text-white text-2xl"></i>
+                </button>
+
+                <a href="#" class="flex items-center select-none">
+                    <img src="{{ asset('home/assets/images/epg.png') }}" alt="EPG" class="h-8 w-auto">
+                    <span class="ml-2 text-2xl font-extrabold text-white tracking-wide">EPG</span>
+                </a>
+            </div>
+
+            {{-- Recherche + liens desktop --}}
+            <div class="hidden md:flex items-center gap-6 flex-1 ml-8">
+                <div class="max-w-xs">
+                    <input type="search" placeholder="Rechercher…"
+                           class="w-56 px-4 py-2 rounded-full bg-white/90 text-gray-900 placeholder-gray-600
+                                  focus:outline-none focus:ring-2 focus:ring-orange-400 transition"/>
+                </div>
+
+                <a href="{{route('enseignant.dashboard')}}" class="hidden md:inline-block text-black font-medium whitespace-nowrap">Accueil</a>
+                <a href="{{route('enseignant.modules.index')}}" class="hidden md:inline-block text-black font-medium whitespace-nowrap">Mes Modules</a>
+
+                {{-- Mes Supports dropdown --}}
+                <div x-data="{ open:false }" class="relative">
+                    <button @click="open=!open" @click.away="open=false" class="hidden md:inline-block text-black font-medium whitespace-nowrap">
+                        Mes Supports <i class="ri-arrow-down-s-line text-sm"></i>
+                    </button>
+                    <div x-show="open" x-transition.opacity
+                         class="absolute left-0 mt-2 w-56 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden z-40">
+                        <a href="{{ route('enseignant.supports.index') }}" class="block px-4 py-2 hover:bg-gray-100">Tous mes supports</a>
+                        <a href="{{ route('enseignant.supports.create') }}" class="block px-4 py-2 hover:bg-gray-100 border-t">Déposer un support</a>
+                    </div>
+                </div>
+
+                {{-- Notifications dropdown --}}
+                <div x-data="{ open:false }" class="relative">
+                    <button @click="open=!open" @click.away="open=false" class="hidden md:inline-block text-black font-medium whitespace-nowrap">
+                        <i class="ri-notification-3-line text-lg"></i>
+                        Notifications
+                        <i class="ri-arrow-down-s-line text-sm"></i>
+                        {{-- Badge optionnel --}}
+                        {{-- <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full">3</span> --}}
+                    </button>
+                    <div x-show="open" x-transition.opacity
+                         class="absolute left-0 mt-2 w-56 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden z-40">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Commentaires</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-t">Évaluations</a>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Profil (RESTE DANS LE MÊME FLEX GLOBAL) --}}
+            <div class="flex items-center gap-2">
+                <span class="hidden md:inline-block text-white font-medium whitespace-nowrap">
+                    {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
+                </span>
+                <div class="relative">
+                    <button @click="user=!user" class="flex items-center p-1 rounded-full hover:bg-blue-800/30 focus:outline-none">
+                        <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="h-8 w-8 rounded-full object-cover">
+                    </button>
+
+                    <div x-show="user" x-transition.opacity @click.away="user=false"
+                         class="origin-top-right absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded-lg shadow-xl overflow-hidden z-40">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mon profil</a>
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button class="block px-4 py-2 hover:bg-gray-100" type="submit">Déconnexion</button>
+</form>
+                    </div>
+                </div>
+            </div>
+
+        </div> {{-- fin flex global --}}
+    </div>
 </nav>
+</header>
+@push('styles')
+<style>
+   .nav-link { @apply font-bold text-white hover:text-orange-300 transition whitespace-nowrap; }
+
+</style>
+@endpush

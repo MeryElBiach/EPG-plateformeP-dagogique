@@ -11,7 +11,7 @@ class Module extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nom', 'formation_id', 'elements'];
+    protected $fillable = ['nom', 'formation_id', 'elements','enseignant_id' ];
 
     public function formation(): BelongsTo
     {
@@ -22,4 +22,5 @@ class Module extends Model
     {
         return $this->hasMany(Support::class);
     }
+    public function enseignant(){ return $this->belongsTo(User::class,'enseignant_id'); }
 }

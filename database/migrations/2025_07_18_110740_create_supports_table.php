@@ -13,7 +13,6 @@ return new class extends Migration
             $table->string('titre');
             $table->enum('type', ['cours', 'td', 'solution']);
             $table->string('fichier'); // chemin ou nom du fichier
-            $table->date('date_soumission');
             $table->foreignId('module_id')->constrained('modules')->onDelete('cascade');
             $table->foreignId('enseignant_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
