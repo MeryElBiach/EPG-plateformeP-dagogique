@@ -1,0 +1,1 @@
+<?php /**PATH C:\xampp\htdocs\PROJECTS\GestionCour\resources\views/Etudiant/partials/footer.blade.php ENDPATH**/ ?>

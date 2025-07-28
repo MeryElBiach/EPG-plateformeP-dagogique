@@ -36,4 +36,13 @@ protected $fillable = [
     {
         return $this->hasMany(Commentaire::class);
     }
+    public function fans()
+{
+    return $this->belongsToMany(
+        \App\Models\User::class,
+        'favoris',
+        'support_id',
+        'etudiant_id'
+    )->withTimestamps();
+}
 }

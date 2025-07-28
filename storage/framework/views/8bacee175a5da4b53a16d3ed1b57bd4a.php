@@ -1,12 +1,12 @@
-@extends('Etudiant.layout')
 
-@section('title', 'Tableau de bord')
 
-@section('content')
+<?php $__env->startSection('title', 'Tableau de bord'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="page-content">
   <div class="container-fluid">
 
-    {{-- ✅ Titre + breadcrumb --}}
+    
     <div class="row mb-20">
       <div class="col-20">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -21,22 +21,22 @@
       </div>
     </div>
 
-    {{-- 🎓 Formation info --}}
+    
     <div class="alert alert-light border d-flex align-items-center mb-10 rounded shadow-sm">
       <i class="ri-graduation-cap-line me-2 text-primary font-size-20"></i>
       <div>
-        Formation actuelle : <strong>{{ $formation->nom }}</strong>
+        Formation actuelle : <strong><?php echo e($formation->nom); ?></strong>
       </div>
     </div>
 
-    {{-- 📊 Cartes indicateurs --}}
+    
     <div class="row gx-3 mb-5">
       <div class="col-md-6 col-xl-3">
         <div class="card dashboard-card h-100 text-center">
           <div class="card-body">
             <i class="ri-book-open-line text-primary font-size-24 mb-2"></i>
             <h6 class="text-muted">Modules suivis</h6>
-            <h3>{{ $modulesCount }}</h3>
+            <h3><?php echo e($modulesCount); ?></h3>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
           <div class="card-body">
             <i class="ri-folder-2-line text-warning font-size-24 mb-2"></i>
             <h6 class="text-muted">Ressources</h6>
-            <h3>{{ $supportsCount }}</h3>
+            <h3><?php echo e($supportsCount); ?></h3>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
           <div class="card-body">
             <i class="ri-chat-3-line text-info font-size-24 mb-2"></i>
             <h6 class="text-muted">Commentaires</h6>
-            <h3>{{ $commentsCount }}</h3>
+            <h3><?php echo e($commentsCount); ?></h3>
           </div>
         </div>
       </div>
@@ -63,18 +63,18 @@
           <div class="card-body">
             <i class="ri-time-line text-success font-size-24 mb-2"></i>
             <h6 class="text-muted">Dernier support consulté</h6>
-            @if(isset($lastViewedSupport))
-              <p class="mb-0"><strong>{{ $lastViewedSupport->titre }}</strong></p>
-              <small class="text-muted">{{ $lastViewedSupport->module->nom }} • {{ $lastViewedSupport->created_at->diffForHumans() }}</small>
-            @else
+            <?php if(isset($lastViewedSupport)): ?>
+              <p class="mb-0"><strong><?php echo e($lastViewedSupport->titre); ?></strong></p>
+              <small class="text-muted"><?php echo e($lastViewedSupport->module->nom); ?> • <?php echo e($lastViewedSupport->created_at->diffForHumans()); ?></small>
+            <?php else: ?>
               <p class="text-muted">Aucun support consulté récemment</p>
-            @endif
+            <?php endif; ?>
           </div>
         </div>
       </div>
     </div>
 
-    {{-- 📥 Derniers supports déposés --}}
+    
     <div class="card shadow-sm mb-5">
       <div class="card-body">
         <h5 class="card-title mb-3">📂 Derniers supports ajoutés</h5>
@@ -89,25 +89,25 @@
               </tr>
             </thead>
             <tbody>
-              @forelse($recentSupports as $support)
+              <?php $__empty_1 = true; $__currentLoopData = $recentSupports; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $support): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
               <tr>
-                <td>{{ $support->module->nom }}</td>
-                <td>{{ ucfirst($support->type) }}</td>
-                <td>{{ $support->titre }}</td>
-                <td>{{ \Carbon\Carbon::parse($support->created_at)->format('d/m/Y') }}</td>
+                <td><?php echo e($support->module->nom); ?></td>
+                <td><?php echo e(ucfirst($support->type)); ?></td>
+                <td><?php echo e($support->titre); ?></td>
+                <td><?php echo e(\Carbon\Carbon::parse($support->created_at)->format('d/m/Y')); ?></td>
               </tr>
-              @empty
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
               <tr>
                 <td colspan="4" class="text-center text-muted">Aucun support trouvé</td>
               </tr>
-              @endforelse
+              <?php endif; ?>
             </tbody>
           </table>
         </div>
       </div>
     </div>
 
-    {{-- 🔗 Accès modules --}}
+    
     <div class="text-center mb-10">
       <a href="#" class="btn btn-primary btn-lg shadow-sm px-4">
         📚 Accéder à mes modules
@@ -116,9 +116,9 @@
 
   </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
   .dashboard-card {
     border-radius: 10px;
@@ -129,12 +129,14 @@
     background-color: #f0f8ff; /* bleu ciel */
   }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // Ajout d'effets si besoin à l’avenir
   });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('Etudiant.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\PROJECTS\GestionCour\resources\views/Etudiant/dash.blade.php ENDPATH**/ ?>

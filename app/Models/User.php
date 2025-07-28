@@ -45,5 +45,16 @@ class User extends Authenticatable
     public function commentaires(): HasMany
     {
         return $this->hasMany(Commentaire::class, 'etudiant_id');
-    }public function modules(){ return $this->hasMany(Module::class,'enseignant_id'); }
+    }
+    public function modules(){ return $this->hasMany(Module::class,'enseignant_id');
+    }
+    public function favoris()
+{
+    return $this->belongsToMany(
+        \App\Models\Support::class,
+        'favoris',          // nom de la table pivot
+        'etudiant_id',      // clé étrangère sur favoris vers users
+        'support_id'        // clé étrangère sur favoris vers supports
+    )->withTimestamps();
+}
 }

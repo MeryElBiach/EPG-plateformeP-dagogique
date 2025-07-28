@@ -10,12 +10,11 @@ class Commentaire extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['contenu', 'date', 'etudiant_id', 'support_id'];
-
-    public function etudiant(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'etudiant_id');
-    }
+    protected $fillable = ['contenu', 'etudiant_id', 'support_id'];
+public function etudiant()
+{
+    return $this->belongsTo(User::class, 'etudiant_id');
+}
 
     public function support(): BelongsTo
     {
